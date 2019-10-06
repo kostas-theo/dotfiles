@@ -14,6 +14,13 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 # End of lines added by compinstall
 
 ###############################################################
-# Starting here with dotfiles tracking method described at https://www.atlassian.com/git/tutorials/dotfiles
+# dotfiles tracking method described at https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-##############################################################
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Custom Useful aliases
+alias ll='ls -la'

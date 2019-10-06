@@ -35,7 +35,18 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
-  'prompt'
+  'prompt' \ # Adding additional modules after this line
+  'autosuggestions' \
+  'command-not-found' \
+  'docker' \
+  'git' \
+  'history' \
+  'history-substring-search' \
+  'osx' \
+  'screen' \
+  'ssh' \
+  'syntax-highlighting' \
+  'tmux'
 
 #
 # Autosuggestions

@@ -45,7 +45,10 @@ typeset -gU cdpath fpath mailpath path
 path=(
   /usr/local/{bin,sbin}
   $path
+
 )
+function join_by { local IFS="$1"; shift; echo "$*"; }
+export PATH=`join_by : $path`
 
 #
 # Less

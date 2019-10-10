@@ -22,4 +22,3 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Custom Useful aliases
-alias ll='ls -la'

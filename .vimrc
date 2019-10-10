@@ -4,7 +4,41 @@ set mouse=a
 set nohlsearch
 set visualbell
 set clipboard+=unnamedplus
+set ruler
+set rulerformat=%=%h%m%r%w\ %(%c%V%),%l/%L\ %P
 
+" a - terse messages (like [+] instead of [Modified]
+" t - truncate file names
+" I - no intro message when starting vim fileless
+" T - truncate long messages to avoid having to hit a key
+"set shortmess=atTI
+
+" display the number of (characters|lines) in visual mode, also cur command
+set showcmd
+
+" current mode in status line
+set showmode
+
+" max items in popup menu
+"set pumheight=8
+
+" show number column
+set number
+set numberwidth=3
+
+" show fold column, fold by markers
+"set foldcolumn=1
+"set foldmethod=marker
+
+" indicate when a line is wrapped by prefixing wrapped line with '> '
+set showbreak=>\
+
+" always show tab line
+set showtabline=2
+
+" highlight search matches
+" https://github.com/lucasoman/Conf/blob/fa5d88d9cf0eb56569e76d60960dcafbfac1534b/.vimrc
+set hlsearch
 " Some basics:
 	nnoremap c "_c
 	set nocompatible

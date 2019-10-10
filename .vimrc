@@ -2,6 +2,7 @@ set bg=light
 set go=a
 set mouse=a
 set nohlsearch
+set visualbell
 set clipboard+=unnamedplus
 
 " Some basics:

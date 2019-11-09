@@ -9,8 +9,6 @@ bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '~.zshrc'
 
-autoload -Uz compinit
-compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 # End of lines added by compinstall
 
 # dotfiles tracking method described at https://www.atlassian.com/git/tutorials/dotfiles

@@ -66,4 +66,10 @@ set hlsearch
 " Automatically deletes all trailing whitespace on save.
 	autocmd BufWritePre * %s/\s\+$//e
 
+"
 " Defaults copied from https://github.com/LukeSmithxyz/voidrice/blob/archi3/.config/nvim/init.vim
+"
+" Own vim command additions
+set t_Co=256
+colorscheme patagonia
+syntax on

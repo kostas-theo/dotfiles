@@ -19,4 +19,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# This is required to make rancher work
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 # Custom Useful aliases

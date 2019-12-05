@@ -11,6 +11,9 @@ zstyle :compinstall filename '~.zshrc'
 
 # End of lines added by compinstall
 
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/local/go/bin
+
 # dotfiles tracking method described at https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -20,5 +23,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # This is required to make rancher work
+# https://www.everythingcli.org/ranger-image-preview-on-osx-with-iterm2/
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 # Custom Useful aliases

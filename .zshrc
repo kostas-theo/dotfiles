@@ -25,4 +25,8 @@ fi
 # This is required to make rancher work
 # https://www.everythingcli.org/ranger-image-preview-on-osx-with-iterm2/
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+
+# Fixing issue described here: https://medium.com/mabar/today-i-learned-fix-go-get-private-repository-return-error-reading-sum-golang-org-lookup-93058a058dd8
+export GOPRIVATE='github.com/getndazn'
+
 # Custom Useful aliases

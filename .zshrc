@@ -30,3 +30,4 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 export GOPRIVATE='github.com/getndazn'
 
 # Custom Useful aliases
+alias tnl='sshuttle -r kostas.theo@prod-eu-central-1-tunnel-service.daznplatform.com:443 0/0'

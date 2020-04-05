@@ -33,3 +33,5 @@ export GOPRIVATE='github.com/getndazn'
 # Custom Useful aliases
 alias tnl='sshuttle -r kostas.theo@prod-eu-central-1-tunnel-service.daznplatform.com:443 0/0'
 alias vscode='code -r .'
+alias push-keepass="aws s3api put-object --profile costa --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/masterdatabase.kdbx --server-side-encryption AES256"
+alias cls='clear && echo -en "\e[3J"'

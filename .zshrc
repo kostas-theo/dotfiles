@@ -14,6 +14,7 @@ zstyle :compinstall filename '~.zshrc'
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+export PATH=$PATH:/Library/TeX/Distributions/Programs/texbin/
 
 # dotfiles tracking method described at https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

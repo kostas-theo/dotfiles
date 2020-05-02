@@ -1,18 +1,16 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=10000
+export HISTTIMEFORMAT="%d/%m/%y %T"
+
 setopt appendhistory autocd
 unsetopt beep extendedglob nomatch notify
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
 zstyle :compinstall filename '~.zshrc'
-
-# End of lines added by compinstall
 
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 export PATH=$PATH:/Library/TeX/Distributions/Programs/texbin/
 
@@ -36,3 +34,8 @@ alias tnl='sshuttle -r kostas.theo@prod-eu-central-1-tunnel-service.daznplatform
 alias vscode='code -r .'
 alias push-keepass="aws s3api put-object --profile costa --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/masterdatabase.kdbx --server-side-encryption AES256"
 alias cls='clear && echo -en "\e[3J"'
+alias dao='dazn aws open -d 8'
+alias ddo='dazn drone open'
+alias ddd='dazn drone deploy'
+alias python='/usr/local/bin/python3'
+alias pip='/usr/local/bin/pip3'

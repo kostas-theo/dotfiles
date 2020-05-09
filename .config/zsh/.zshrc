@@ -18,9 +18,32 @@ export PATH=$PATH:/Library/TeX/Distributions/Programs/texbin/
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+ fi
+
+# prompt
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr "%F{74}◼%f"
+# zstyle ':vcs_info:*' stagedstr "%F{136}●%f"
+zstyle ':vcs_info:*' stagedstr "%F{114}✚%f"
+zstyle ':vcs_info:git:*' formats '%m%c%u %F{240}%b%f '
+precmd() {
+    vcs_info
+}
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
++vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        hook_com[staged]+='%F{217}✱%f '
+    fi
+}
+setopt prompt_subst
+
+PROMPT='%B%F{152}%1~%f%b $ '
+RPROMPT='${vcs_info_msg_0_}%(?..%B%F{1}%?%f%b)'
 
 # This is required to make rancher work
 # https://www.everythingcli.org/ranger-image-preview-on-osx-with-iterm2/
@@ -28,12 +51,6 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 
 # Fixing issue described here: https://medium.com/mabar/today-i-learned-fix-go-get-private-repository-return-error-reading-sum-golang-org-lookup-93058a058dd8
 export GOPRIVATE='github.com/getndazn'
-
-# prompt
-zstyle :prompt:pure:path color cyan
-zstyle :prompt:pure:prompt:success color purple
-zstyle :prompt:pure:git:stash show yes
-prompt pure
 
 # aliases
 alias ll='ls -lah'
@@ -46,3 +63,4 @@ alias ddo='dazn drone open'
 alias ddd='dazn drone deploy'
 alias python='/usr/local/bin/python3'
 alias pip='/usr/local/bin/pip3'
+[[ ${OSTYPE} == "darwin"* ]] && alias date='gdate'

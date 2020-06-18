@@ -22,7 +22,8 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
  fi
 
-# prompt
+# prompt see here for good structuring: https://gist.github.com/mseri/8026965
+# todo: move all of this into a separate file
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
@@ -53,6 +54,8 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 export GOPRIVATE='github.com/getndazn'
 
 # aliases
+unalias gls
+alias ls='gls --color=auto --group-directories-first'
 alias ll='ls -lah'
 alias tnl='sshuttle -r kostas.theo@prod-eu-central-1-tunnel-service.daznplatform.com:443 0/0'
 alias vscode='code -r .'
@@ -63,4 +66,5 @@ alias ddo='dazn drone open'
 alias ddd='dazn drone deploy'
 alias python='/usr/local/bin/python3'
 alias pip='/usr/local/bin/pip3'
+alias vim='nvim'
 [[ ${OSTYPE} == "darwin"* ]] && alias date='gdate'

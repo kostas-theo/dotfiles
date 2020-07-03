@@ -4,5 +4,6 @@
       "command": "terraform-lsp",
       "filetypes": ["terraform","tf"]
     }
-  }
+  },
+  "go.trace.server": "messages"
 }

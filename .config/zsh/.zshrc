@@ -54,7 +54,7 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 export GOPRIVATE='github.com/getndazn'
 
 # aliases
-unalias gls
+unalias gls || true
 alias ls='gls --color=auto --group-directories-first'
 alias ll='ls -lah'
 alias tnl='sshuttle -r kostas.theo@prod-eu-central-1-tunnel-service.daznplatform.com:443 0/0'
@@ -67,4 +67,11 @@ alias ddd='dazn drone deploy'
 alias python='/usr/local/bin/python3'
 alias pip='/usr/local/bin/pip3'
 alias vim='nvim'
+alias tree='tree --dirsfirst'
 [[ ${OSTYPE} == "darwin"* ]] && alias date='gdate'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kostas.theodorakopoulos/Documents/tutorials/k8s-the-hard-way/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kostas.theodorakopoulos/Documents/tutorials/k8s-the-hard-way/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kostas.theodorakopoulos/Documents/tutorials/k8s-the-hard-way/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kostas.theodorakopoulos/Documents/tutorials/k8s-the-hard-way/google-cloud-sdk/completion.zsh.inc'; fi

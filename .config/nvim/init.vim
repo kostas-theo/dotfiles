@@ -2,6 +2,9 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 call plug#begin('~/.vim/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+"Plug 'tpope/vim-sleuth'
 call plug#end()
 
 " colors
@@ -15,9 +18,18 @@ colorscheme PaperColor
 set number relativenumber "relative line numbers on the LHS
 set clipboard+=unnamedplus "alias the unnamed register to the '+' register which is the X Window clipboard
 set ignorecase "ignore case while searching
-set tabstop=2 "number of spaces per tab
-set shiftwidth=0 "required to enforce tabstop as default number of spaces for indentation
-set expandtab "required to enforce tabstop as default number of spaces for indentation
+"set tabstop=2 "number of spaces per tab
+"no longer required thanks to sleuth set shiftwidth=0 "required to enforce tabstop as default number of spaces for indentation
+"no longer required thanks to sleuth set expandtab "required to enforce tabstop as default number of spaces for indentation
+
+" Use spaces instead of tabs
+set expandtab
+" Be smart when using tabs
+set smarttab
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
 set mouse=a "ability to click to direct prompt
 
 filetype on "detect files based on type
@@ -92,6 +104,34 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" coc extensions
+let g:coc_global_extensions = [
+      \'coc-yaml',
+      \'coc-tsserver',
+      \'coc-go',
+      \'coc-json',
+      \]
+
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient (coc)
 let g:go_def_mapping_enabled = 0
+
+" custom fzf search window
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset':0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
+" more natural splitting
+set splitright
+set splitbelow
+
+" custom fzf.vim Rg function which disables quoting the arguments
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --hidden --color=always --smart-case -- '.(len(<q-args>) > 0 ? <q-args> : '""'), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+" custom mappings
+nmap <leader>O :Files<CR>
+nmap <leader>F :Rg<CR>
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+nnoremap <C-j> <C-w>w

@@ -71,7 +71,7 @@ alias tree='tree --dirsfirst'
 [[ ${OSTYPE} == "darwin"* ]] && alias date='gdate'
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kostas.theodorakopoulos/Documents/tutorials/k8s-the-hard-way/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kostas.theodorakopoulos/Documents/tutorials/k8s-the-hard-way/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/kostas.theodorakopoulos/Documents/tutorials/k8s-the-hard-way/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kostas.theodorakopoulos/Documents/tutorials/k8s-the-hard-way/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi

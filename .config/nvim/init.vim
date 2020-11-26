@@ -129,6 +129,10 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --hidden --color=always --smart-case -- '.(len(<q-args>) > 0 ? <q-args> : '""'), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
+" use rg as grep program
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+set grepformat=%f:%l:%c:%m
+
 " custom mappings
 nmap <leader>O :Files<CR>
 nmap <leader>F :Rg<CR>

@@ -54,6 +54,10 @@ setopt prompt_subst
 PROMPT='%B%F{152}%1~%f%b $ '
 RPROMPT='${vcs_info_msg_0_}%(?..%B%F{1}%?%f%b)'
 
+# antibody
+source <(antibody init)
+antibody bundle < ${ZDOTDIR:-HOME}/zsh_plugins.txt
+
 # This is required to make rancher work
 # https://www.everythingcli.org/ranger-image-preview-on-osx-with-iterm2/
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages

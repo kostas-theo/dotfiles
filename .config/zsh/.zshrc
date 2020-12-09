@@ -14,6 +14,14 @@ export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 export PATH=$PATH:/Library/TeX/Distributions/Programs/texbin/
 
+# recommended simply history search
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+
 # dotfiles tracking method described at https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -54,7 +62,7 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 export GOPRIVATE='github.com/getndazn'
 
 # aliases
-unalias gls || true
+# unalias gls || true
 alias ls='gls --color=auto --group-directories-first'
 alias ll='ls -lah'
 alias tnl='sshuttle -r kostas.theo@prod-eu-central-1-tunnel-service.daznplatform.com:443 0/0'

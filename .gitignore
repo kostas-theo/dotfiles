@@ -1,12 +1,15 @@
 .config/coc
+.config/gcloud
 .config/nvim/autoload
 .CFUserTextEncoding
 .cfg/
 .cups/
 .gitconfig
+.histfile
 .local/
 .master.key
 .npm/
+.terraform.versions/
 .Trash/
 .vim/
 .viminfo

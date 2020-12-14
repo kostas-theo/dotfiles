@@ -1,5 +1,6 @@
 .boto
 .config/coc
+.config/filezilla
 .config/gcloud
 .config/nvim/autoload
 .config/zsh/.zcompdump
@@ -7,6 +8,7 @@
 .cfg/
 .cups/
 .gitconfig
+go/
 .histfile
 .kube/
 .local/

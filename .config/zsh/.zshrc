@@ -3,6 +3,8 @@ HISTSIZE=1000
 SAVEHIST=10000
 export HISTTIMEFORMAT="%d/%m/%y %T"
 
+export LESSHISTFILE=${XDG_CACHE_HOME:-HOME/.cache}/.lesshst
+
 setopt appendhistory autocd
 unsetopt beep extendedglob nomatch notify
 bindkey -e
@@ -71,8 +73,8 @@ alias ls='gls --color=auto --group-directories-first'
 alias ll='ls -lah'
 alias tnl='sshuttle -r kostas.theo@prod-eu-central-1-tunnel-service.daznplatform.com:443 0/0'
 alias vscode='code -r .'
-alias push-keepass="aws s3api put-object --profile costa --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/masterdatabase.kdbx --server-side-encryption AES256"
-alias pull-keepass="aws s3 cp --profile costa s3://costa-theodorakopoulos-secure/masterdatabase.kdbx ~/masterdatabase.kdbx"
+alias push-keepass="aws s3api put-object --profile costa --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/.keepass/masterdatabase.kdbx --server-side-encryption AES256"
+alias pull-keepass="aws s3 cp --profile costa s3://costa-theodorakopoulos-secure/masterdatabase.kdbx ~/.keepass/masterdatabase.kdbx"
 alias cls='clear && echo -en "\e[3J"'
 alias dao='dazn aws open'
 alias ddo='dazn drone open'
@@ -92,3 +94,9 @@ if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion
 
 # using direnv
 eval "$(direnv hook zsh)"
+
+export HELM_HOME=${XDG_CONFIG_HOME:-HOME/.config}/helm
+
+export AWS_CONFIG_FILE=${XDG_CONFIG_HOME:-HOME/.config}/aws
+
+export PULUMI_HOME=${XDG_CONFIG_HOME:-HOME/.config}/pulumi

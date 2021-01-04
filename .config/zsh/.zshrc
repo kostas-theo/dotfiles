@@ -16,21 +16,8 @@ export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 export PATH=$PATH:/Library/TeX/Distributions/Programs/texbin/
 
-# recommended simply history search
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
-
 # dotfiles tracking method described at https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
-# Source Prezto.
- if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
- fi
 
 # prompt see here for good structuring: https://gist.github.com/mseri/8026965
 # todo: move all of this into a separate file
@@ -53,12 +40,8 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 }
 setopt prompt_subst
 
-PROMPT='%B%F{152}%1~%f%b $ '
+PROMPT='%B%F{152}%1~%f%b > '
 RPROMPT='${vcs_info_msg_0_}%(?..%B%F{1}%?%f%b)'
-
-# antibody
-source <(antibody init)
-antibody bundle < ${ZDOTDIR:-HOME}/zsh_plugins.txt
 
 # This is required to make rancher work
 # https://www.everythingcli.org/ranger-image-preview-on-osx-with-iterm2/
@@ -71,14 +54,10 @@ export GOPRIVATE='github.com/getndazn'
 # unalias gls || true
 alias ls='gls --color=auto --group-directories-first'
 alias ll='ls -lah'
-alias tnl='sshuttle -r kostas.theo@prod-eu-central-1-tunnel-service.daznplatform.com:443 0/0'
 alias vscode='code -r .'
 alias push-keepass="aws s3api put-object --profile costa --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/.keepass/masterdatabase.kdbx --server-side-encryption AES256"
 alias pull-keepass="aws s3 cp --profile costa s3://costa-theodorakopoulos-secure/masterdatabase.kdbx ~/.keepass/masterdatabase.kdbx"
 alias cls='clear && echo -en "\e[3J"'
-alias dao='dazn aws open'
-alias ddo='dazn drone open'
-alias ddd='dazn drone deploy'
 alias weather='curl wttr.in/Haarlem'
 alias python='/usr/local/bin/python3'
 alias pip='/usr/local/bin/pip3'
@@ -100,3 +79,18 @@ export HELM_HOME=${XDG_CONFIG_HOME:-HOME/.config}/helm
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME:-HOME/.config}/aws
 
 export PULUMI_HOME=${XDG_CONFIG_HOME:-HOME/.config}/pulumi
+
+# manual installation and config of zsh-syntax-highlighting and zsh-history-substring-search
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+set HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE
+setopt HIST_IGNORE_ALL_DUPS

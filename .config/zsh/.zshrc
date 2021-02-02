@@ -64,6 +64,7 @@ alias pip='/usr/local/bin/pip3'
 alias vim='nvim'
 alias tree='tree --dirsfirst'
 [[ ${OSTYPE} == "darwin"* ]] && alias date='gdate'
+alias k='kubectl'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi

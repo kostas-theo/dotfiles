@@ -1,6 +1,7 @@
 .aws
 .boto
 .cache
+.cfg
 .circleci
 .config/aws
 .config/coc

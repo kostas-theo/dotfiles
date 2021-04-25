@@ -55,16 +55,19 @@ export GOPRIVATE='github.com/getndazn'
 alias ls='gls --color=auto --group-directories-first'
 alias ll='ls -lah'
 alias vscode='code -r .'
-alias push-keepass="aws s3api put-object --profile costa --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/.keepass/masterdatabase.kdbx --server-side-encryption AES256"
-alias pull-keepass="aws s3 cp --profile costa s3://costa-theodorakopoulos-secure/masterdatabase.kdbx ~/.keepass/masterdatabase.kdbx"
+alias push-keepass="aws s3api put-object --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/.keepass/masterdatabase.kdbx --server-side-encryption AES256"
+alias pull-keepass="aws s3 cp s3://costa-theodorakopoulos-secure/masterdatabase.kdbx ~/.keepass/masterdatabase.kdbx"
 alias cls='clear && echo -en "\e[3J"'
-alias weather='curl wttr.in/Haarlem'
+alias weather='curl wttr.in/Haarlem?format="%l+weather:\n+\n%c:+%C:+%t\nRain:+%p\nSunset:+%s\n\n\n"\&m'
+alias weatherfc='curl wttr.in/Haarlem\?m'
 alias python='/usr/local/bin/python3'
 alias pip='/usr/local/bin/pip3'
 alias vim='nvim'
 alias tree='tree --dirsfirst'
 [[ ${OSTYPE} == "darwin"* ]] && alias date='gdate'
 alias k='kubectl'
+alias helm2="/usr/local/Cellar/helm@2/2.17.0/bin/helm"
+alias tiller="/usr/local/Cellar/helm@2/2.17.0/bin/tiller"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi
@@ -76,10 +79,9 @@ if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion
 eval "$(direnv hook zsh)"
 
 export HELM_HOME=${XDG_CONFIG_HOME:-HOME/.config}/helm
-
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME:-HOME/.config}/aws
-
 export PULUMI_HOME=${XDG_CONFIG_HOME:-HOME/.config}/pulumi
+# export KUBECONFIG=${XDG_CONFIG_HOME:-HOME/.config}/kube
 
 # manual installation and config of zsh-syntax-highlighting and zsh-history-substring-search
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search

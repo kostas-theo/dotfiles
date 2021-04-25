@@ -4,9 +4,11 @@
 .circleci
 .config/aws
 .config/coc
+.config/configstore
 .config/filezilla
 .config/gcloud
 .config/helm
+.config/iterm2
 .config/nvim/autoload
 .config/pulumi
 .config/zsh/.zcompdump
@@ -14,14 +16,17 @@
 .cfg
 .cups
 .docker
+.DS_Store
 .gitconfig
 go
 .gsutil
+.helm
 .histfile
 .keepass
 .kube
 .local
 .npm
+.ssh
 .terraform.versions
 .terraform.d
 .Trash
@@ -29,6 +34,7 @@ go
 .viminfo
 .zsh_history
 Applications
+Calibre\ Library
 Desktop
 Documents
 Downloads

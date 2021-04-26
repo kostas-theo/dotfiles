@@ -60,6 +60,7 @@ if [ "$(uname)" == "Darwin" ]; then
     eval "$(direnv hook zsh)"
 elif [ "$(uname)" == "Linux" ]; then
     # Do something on Linux platforms
+    alias ls='ls --color=auto --group-directories-first'
 fi
 #
 # aliases

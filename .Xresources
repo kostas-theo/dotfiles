@@ -1,0 +1,14 @@
+Xft.dpi: 192
+*background: #1b1918
+*foreground: #00cc00
+*foreground_bold: #a8a19f
+*cursor: #a8a19f
+URxvt.background: [90]#000000
+URxvt.foreground: White
+URxvt.colorUL: yellow
+URxvt.underlineColor: yellow
+URxvt.fading: 30
+URxvt.font: xft:Iosevka:size=30
+URxvt.cursorColor: magenta
+URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
+URxvt.url-launcher: /usr/bin/xdg-open

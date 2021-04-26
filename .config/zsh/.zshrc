@@ -56,13 +56,27 @@ if [ "$(uname)" == "Darwin" ]; then
     alias cls='clear && echo -en "\e[3J"'
     alias date='gdate'
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
     eval "$(direnv hook zsh)"
 elif [ "$(uname)" == "Linux" ]; then
     # Do something on Linux platforms
     alias ls='ls --color=auto --group-directories-first'
 fi
-#
+
+if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh ]; then
+    echo "zsh-history-substring-search function file not found, installing now..."
+    curl -fLo "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh" \
+        https://raw.githubusercontent.com/zsh-users/zsh-history-substring-search/master/zsh-history-substring-search.zsh
+fi
+if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    echo "zsh-syntax-highlighting function file not found, installing now..."
+    rm -rf ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/
+fi
+
+source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh
+
+
+
 # aliases
 # unalias gls || true
 alias ll='ls -lah'

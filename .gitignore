@@ -13,12 +13,14 @@
 .config/nvim/autoload
 .config/pulumi
 .config/zsh/.zcompdump
+.config/zsh/functions
 .CFUserTextEncoding
 .cfg
 .cups
 .docker
 .DS_Store
 .gitconfig
+.git-credentials
 go
 .gsutil
 .helm

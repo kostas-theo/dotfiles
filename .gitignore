@@ -8,8 +8,10 @@
 .config/configstore
 .config/filezilla
 .config/gcloud
+.config/gnupg
 .config/helm
 .config/iterm2
+.config/keepassxc
 .config/nvim/autoload
 .config/pulumi
 .config/zsh/.zcompdump
@@ -17,6 +19,7 @@
 .CFUserTextEncoding
 .cfg
 .cups
+.datamon2
 .docker
 .DS_Store
 .gitconfig
@@ -28,6 +31,7 @@ go
 .keepass
 .kube
 .local
+.mozilla
 .npm
 .ssh
 .terraform.versions
@@ -35,6 +39,7 @@ go
 .Trash
 .vim
 .viminfo
+.Xauthority
 .zsh_history
 Applications
 Calibre\ Library

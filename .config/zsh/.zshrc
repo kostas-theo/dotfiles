@@ -51,22 +51,22 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 export GOPRIVATE='github.com/getndazn'
 
 if [ "$(uname)" == "Darwin" ]; then
-    # Do something on Mac OS X platforms
     alias ls='gls --color=auto --group-directories-first'
     alias cls='clear && echo -en "\e[3J"'
     alias date='gdate'
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     eval "$(direnv hook zsh)"
 elif [ "$(uname)" == "Linux" ]; then
-    # Do something on Linux platforms
     alias ls='ls --color=auto --group-directories-first'
+    export GNUPGHOME=${XDG_CONFIG_HOME:-$HOME/.config}/gnupg/
 fi
 
 if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh ]; then
     echo "zsh-history-substring-search function file not found, installing now..."
-    curl -fLo "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh" \
+    curl -fLo "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh" --create-dirs \
         https://raw.githubusercontent.com/zsh-users/zsh-history-substring-search/master/zsh-history-substring-search.zsh
 fi
+
 if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     echo "zsh-syntax-highlighting function file not found, installing now..."
     rm -rf ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/
@@ -74,11 +74,16 @@ if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlightin
 fi
 
 source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh
+source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim ]; then
+    echo "plug.vim file not found, installing now..."
+    curl -fLo "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim" --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 
 
 # aliases
-# unalias gls || true
 alias ll='ls -lah'
 alias vscode='code -r .'
 alias push-keepass="aws s3api put-object --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/.keepass/masterdatabase.kdbx --server-side-encryption AES256"
@@ -98,8 +103,6 @@ if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.i
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'; fi
-
-# using direnv
 
 export HELM_HOME=${XDG_CONFIG_HOME:-HOME/.config}/helm
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME:-HOME/.config}/aws

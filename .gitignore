@@ -1,4 +1,5 @@
 .aws
+.bash_history
 .boto
 .cache
 .cfg
@@ -13,6 +14,7 @@
 .config/iterm2
 .config/keepassxc
 .config/nvim/autoload
+.config/pgcli
 .config/pulumi
 .config/zsh/.zcompdump
 .config/zsh/functions
@@ -39,6 +41,7 @@ go
 .Trash
 .vim
 .viminfo
+.wget-hsts
 .Xauthority
 .zsh_history
 Applications

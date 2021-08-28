@@ -7,6 +7,8 @@
 .config/aws
 .config/coc
 .config/configstore
+.config/darktable
+.config/dconf
 .config/filezilla
 .config/gcloud
 .config/gnupg

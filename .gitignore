@@ -18,6 +18,7 @@
 .config/nvim/autoload
 .config/pgcli
 .config/pulumi
+.config/QtProject.conf
 .config/zsh/.zcompdump
 .config/zsh/functions
 .CFUserTextEncoding

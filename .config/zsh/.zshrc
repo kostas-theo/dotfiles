@@ -52,6 +52,7 @@ export GOPRIVATE='github.com/getndazn'
 
 if [ "$(uname)" == "Darwin" ]; then
     alias ls='gls --color=auto --group-directories-first'
+    alias sed='gsed'
     alias cls='clear && echo -en "\e[3J"'
     alias date='gdate'
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

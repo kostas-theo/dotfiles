@@ -1,3 +1,5 @@
+.argocd
+.aspell*
 .aws
 .bash_history
 .boto
@@ -38,6 +40,8 @@ go
 .local
 .mozilla
 .npm
+.psql_history
+.rediscli_history
 .ssh
 .terraform.versions
 .terraform.d

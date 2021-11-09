@@ -108,6 +108,7 @@ if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion
 export HELM_HOME=${XDG_CONFIG_HOME:-HOME/.config}/helm
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME:-HOME/.config}/aws
 export PULUMI_HOME=${XDG_CONFIG_HOME:-HOME/.config}/pulumi
+export URXVT_PERL_LIB=${XDG_CONFIG_HOME:-HOME/.config}/urvxt/ext
 # export KUBECONFIG=${XDG_CONFIG_HOME:-HOME/.config}/kube
 
 # manual installation and config of zsh-syntax-highlighting and zsh-history-substring-search

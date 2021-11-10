@@ -66,12 +66,12 @@ if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-
     echo "zsh-history-substring-search function file not found"
 fi
 
-if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting.zsh ]; then
+if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     echo "zsh-syntax-highlighting function file not found"
 fi
 
 source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh
-source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting.zsh
+source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim ]; then
     echo "plug.vim file not found, installing now..."

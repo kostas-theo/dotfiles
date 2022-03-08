@@ -14,7 +14,10 @@ endif
 call plug#begin(plugin_dir)
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" was like this, tried to fix due to failing in arch
+" https://github.com/junegunn/vim-plug/issues/1070
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
 "Plug 'tpope/vim-sleuth'
 call plug#end()

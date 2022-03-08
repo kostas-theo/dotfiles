@@ -1,17 +1,12 @@
 let mapleader =","
 
 let config_dir = stdpath('config')
-let plugin_dir = config_dir . '/plugged'
 if empty(glob(config_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.config_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync
 endif
 
-if empty(glob(plugin_dir))
-  autocmd VimEnter * PlugInstall --sync
-endif
-
-call plug#begin(plugin_dir)
+call plug#begin(stdpath('data') . '/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " was like this, tried to fix due to failing in arch

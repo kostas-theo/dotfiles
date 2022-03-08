@@ -57,21 +57,24 @@ if [ "$(uname)" == "Darwin" ]; then
     alias date='gdate'
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     eval "$(direnv hook zsh)"
+    # check if we have zsh plugins installed and source them
+    if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh ]; then
+        echo "zsh-history-substring-search function file not found"
+    fi
+
+    if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+        echo "zsh-syntax-highlighting function file not found"
+    fi
+
+    source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh
+    source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [ "$(uname)" == "Linux" ]; then
     alias ls='ls --color=auto --group-directories-first'
     export GNUPGHOME=${XDG_CONFIG_HOME:-$HOME/.config}/gnupg/
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh ]; then
-    echo "zsh-history-substring-search function file not found"
-fi
-
-if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    echo "zsh-syntax-highlighting function file not found"
-fi
-
-source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh
-source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim ]; then
     echo "plug.vim file not found, installing now..."

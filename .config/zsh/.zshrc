@@ -117,3 +117,5 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 set HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE
 setopt HIST_IGNORE_ALL_DUPS
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

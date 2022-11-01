@@ -6,11 +6,13 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync
 endif
 
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" was like this, tried to fix due to failing in arch
+" https://github.com/junegunn/vim-plug/issues/1070
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
 "Plug 'tpope/vim-sleuth'
 call plug#end()

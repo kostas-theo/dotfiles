@@ -76,6 +76,8 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(uname)" == "Linux" ]; then
     alias ls='ls --color=auto --group-directories-first'
     export GNUPGHOME=${XDG_CONFIG_HOME:-$HOME/.config}/gnupg/
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     export URXVT_PERL_LIB=/usr/lib/urxvt/perl/
 fi
 

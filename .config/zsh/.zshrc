@@ -57,7 +57,6 @@ if [ "$(uname)" == "Darwin" ]; then
     alias date='gdate'
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     eval "$(direnv hook zsh)"
-    # check if we have zsh plugins installed and source them
     if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh ]; then
         echo "zsh-history-substring-search function file not found"
     fi
@@ -68,28 +67,26 @@ if [ "$(uname)" == "Darwin" ]; then
 
     source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh
     source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+    if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim ]; then
+        echo "plug.vim file not found, installing now..."
+        curl -fLo "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim" --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    fi
 elif [ "$(uname)" == "Linux" ]; then
     alias ls='ls --color=auto --group-directories-first'
     export GNUPGHOME=${XDG_CONFIG_HOME:-$HOME/.config}/gnupg/
     source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    export URXVT_PERL_LIB=/usr/lib/urxvt/perl/
 fi
-
-
-if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim ]; then
-    echo "plug.vim file not found, installing now..."
-    curl -fLo "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim" --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-fi
-
 
 # aliases
 alias ll='ls -lah'
-alias vscode='code -r .'
 alias push-keepass="aws s3api put-object --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/.keepass/masterdatabase.kdbx --server-side-encryption AES256"
 alias pull-keepass="aws s3 cp s3://costa-theodorakopoulos-secure/masterdatabase.kdbx ~/.keepass/masterdatabase.kdbx"
-alias weather='curl wttr.in/Haarlem?format="%l+weather:\n+\n%c:+%C:+%t\nRain:+%p\nSunset:+%s\n\n\n"\&m'
-alias weatherfc='curl wttr.in/Haarlem\?m'
+alias weather='curl wttr.in/Amsterdam?format="%l+weather:\n+\n%c:+%C:+%t\nRain:+%p\nSunset:+%s\n\n\n"\&m'
+alias weatherfc='curl wttr.in/Amsterdam\?m'
 alias python='/usr/local/bin/python3'
 alias pip='/usr/local/bin/pip3'
 alias vim='nvim'
@@ -107,7 +104,7 @@ if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion
 export HELM_HOME=${XDG_CONFIG_HOME:-HOME/.config}/helm
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME:-HOME/.config}/aws
 export PULUMI_HOME=${XDG_CONFIG_HOME:-HOME/.config}/pulumi
-export URXVT_PERL_LIB=${XDG_CONFIG_HOME:-HOME/.config}/urvxt/ext
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 # export KUBECONFIG=${XDG_CONFIG_HOME:-HOME/.config}/kube
 
 # manual installation and config of zsh-syntax-highlighting and zsh-history-substring-search
@@ -122,3 +119,5 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 set HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE
 setopt HIST_IGNORE_ALL_DUPS
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

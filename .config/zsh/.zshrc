@@ -1,5 +1,3 @@
-HISTFILE=~/.histfile
-HISTSIZE=1000
 SAVEHIST=10000
 export HISTTIMEFORMAT="%d/%m/%y %T"
 
@@ -43,10 +41,6 @@ setopt prompt_subst
 PROMPT='%B%F{152}%1~%f%b > '
 RPROMPT='${vcs_info_msg_0_}%(?..%B%F{1}%?%f%b)'
 
-# This is required to make rancher work
-# https://www.everythingcli.org/ranger-image-preview-on-osx-with-iterm2/
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages
-
 # Fixing issue described here: https://medium.com/mabar/today-i-learned-fix-go-get-private-repository-return-error-reading-sum-golang-org-lookup-93058a058dd8
 export GOPRIVATE='github.com/getndazn'
 
@@ -55,18 +49,28 @@ if [ "$(uname)" == "Darwin" ]; then
     alias sed='gsed'
     alias cls='clear && echo -en "\e[3J"'
     alias date='gdate'
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    eval "$(direnv hook zsh)"
-    if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh ]; then
-        echo "zsh-history-substring-search function file not found"
+    if [ ! -d $ZDOTDIR/functions ]; then
+        mkdir $ZDOTDIR/functions
     fi
 
-    if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-        echo "zsh-syntax-highlighting function file not found"
+    if [ ! -f $ZDOTDIR/functions/zsh-history-substring-search.zsh ]; then
+        if [ ! -f /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh ]; then
+            echo "zsh-history-substring-search function not installed. Run brew install zsh-history-substring-search"
+        else
+            ln -s /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh $ZDOTDIR/functions/zsh-history-substring-search.zsh
+        fi
     fi
 
-    source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-history-substring-search.zsh
-    source ${XDG_CONFIG_HOME:-$HOME/.config}/zsh/functions/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    if [ ! -f $ZDOTDIR/functions/zsh-syntax-highlighting.zsh ]; then
+        if [ ! -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+            echo "zsh-syntax-highlighting function not installed. Run brew install zsh-syntax-highlighting"
+        else
+            ln -s /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh $ZDOTDIR/functions/zsh-syntax-highlighting.zsh
+        fi
+    fi
+
+    source $ZDOTDIR/functions/zsh-history-substring-search.zsh
+    source $ZDOTDIR/functions/zsh-syntax-highlighting.zsh
 
     if [ ! -f ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim ]; then
         echo "plug.vim file not found, installing now..."
@@ -85,32 +89,16 @@ fi
 alias ll='ls -lah'
 alias push-keepass="aws s3api put-object --bucket costa-theodorakopoulos-secure --key masterdatabase.kdbx --body ~/.keepass/masterdatabase.kdbx --server-side-encryption AES256"
 alias pull-keepass="aws s3 cp s3://costa-theodorakopoulos-secure/masterdatabase.kdbx ~/.keepass/masterdatabase.kdbx"
-alias weather='curl wttr.in/Amsterdam?format="%l+weather:\n+\n%c:+%C:+%t\nRain:+%p\nSunset:+%s\n\n\n"\&m'
-alias weatherfc='curl wttr.in/Amsterdam\?m'
 alias python='/usr/local/bin/python3'
 alias pip='/usr/local/bin/pip3'
 alias vim='nvim'
 alias tree='tree --dirsfirst'
 alias k='kubectl'
-alias helm2="/usr/local/Cellar/helm@2/2.17.0/bin/helm"
-alias tiller="/usr/local/Cellar/helm@2/2.17.0/bin/tiller"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'; fi
 
 export HELM_HOME=${XDG_CONFIG_HOME:-HOME/.config}/helm
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME:-HOME/.config}/aws
 export PULUMI_HOME=${XDG_CONFIG_HOME:-HOME/.config}/pulumi
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-# export KUBECONFIG=${XDG_CONFIG_HOME:-HOME/.config}/kube
-
-# manual installation and config of zsh-syntax-highlighting and zsh-history-substring-search
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
 
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
@@ -119,5 +107,3 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 set HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE
 setopt HIST_IGNORE_ALL_DUPS
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

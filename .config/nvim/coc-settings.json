@@ -1,9 +1,11 @@
 {
   "languageserver": {
     "terraform": {
-      "command": "terraform-lsp",
-      "filetypes": ["terraform","tf"]
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform","tf"],
+      "initializationOptions": {},
+	  "settings": {}
     }
-  },
-  "go.trace.server": "messages"
+  }
 }

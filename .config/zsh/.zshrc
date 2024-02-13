@@ -99,6 +99,7 @@ export HELM_HOME=${XDG_CONFIG_HOME:-HOME/.config}/helm
 export AWS_CONFIG_FILE=${XDG_CONFIG_HOME:-HOME/.config}/aws
 export PULUMI_HOME=${XDG_CONFIG_HOME:-HOME/.config}/pulumi
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+export BEETSDIR=/Volumes/music/beets/
 
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
@@ -107,3 +108,11 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 set HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE
 setopt HIST_IGNORE_ALL_DUPS
+
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kostas/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kostas/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kostas/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kostas/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

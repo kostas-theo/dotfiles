@@ -49,6 +49,7 @@ if [ "$(uname)" == "Darwin" ]; then
     alias sed='gsed'
     alias cls='clear && echo -en "\e[3J"'
     alias date='gdate'
+    alias gcloud=/usr/local/google-cloud-sdk/bin/gcloud
     if [ ! -d $ZDOTDIR/functions ]; then
         mkdir $ZDOTDIR/functions
     fi
@@ -112,7 +113,7 @@ setopt HIST_IGNORE_ALL_DUPS
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kostas/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kostas/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/kostas/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kostas/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi

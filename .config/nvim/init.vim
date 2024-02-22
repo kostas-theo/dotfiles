@@ -54,3 +54,73 @@ set cmdheight=2 "Better display for messages
 set updatetime=300 "Smaller updatetime for CursorHold & CursorHoldI
 set shortmess+=c "don't give |ins-completion-menu| messages.
 set signcolumn=yes "always show signcolumns
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" coc extensions
+let g:coc_global_extensions = [
+      \'coc-yaml',
+      \'coc-tsserver',
+      \'coc-go',
+      \'coc-json',
+      \]
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient (coc)
+let g:go_def_mapping_enabled = 0
+" custom fzf search window
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset':0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+" more natural splitting
+set splitright
+set splitbelow
+" custom fzf.vim Rg function which disables quoting the arguments
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --hidden --color=always --smart-case -- '.(len(<q-args>) > 0 ? <q-args> : '""'), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+" use rg as grep program
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+set grepformat=%f:%l:%c:%m
+" custom mappings
+nmap <leader>O :Files<CR>
+nmap <leader>F :Rg<CR>
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+nnoremap <C-j> <C-w>w

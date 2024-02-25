@@ -140,5 +140,10 @@ inoremap <silent><expr> <Tab>
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 
+" use <cr> (return) to confirm coc selection
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+" use <s-tab> to highlight previous suggestion
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+
 " COC-VIM TAB SETTINGS END
 " --------------------------------------------------------

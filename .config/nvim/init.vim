@@ -141,7 +141,7 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 " use <cr> (return) to confirm coc selection
-inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 " use <s-tab> to highlight previous suggestion
 inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
